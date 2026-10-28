@@ -5,7 +5,9 @@ requires-python = ">=3.12"
 dependencies = [
     "email-validator>=2.3.0",
     "fastapi>=0.142.2",
+    "httpx>=0.28.1",
     "pydantic-settings>=2.15.0",
+    "pyjwt[crypto]>=2.8.0",
     "pymongo>=4.18.2",
     "python-multipart>=0.0.32",
     "uvicorn[standard]>=0.54.0",
@@ -13,8 +15,13 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "httpx>=0.28.1",
     "pytest>=9.1.1",
     "pytest-asyncio>=1.4.0",
     "ruff>=0.16.9",
+]
+
+[tool.ruff.lint]
+ignore = [
+    "B008",  # Allow Depends in argument defaults (standard in FastAPI)
+    "BLE001", # Allow broad Exception catch for rollback/compensation and network resilience
 ]
